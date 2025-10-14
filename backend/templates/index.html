@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Collection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>E-Waste Collection & Recycling System</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/add_item">Add Item</a></li>
+                    <li><a href="/view_data">View Data</a></li>
+                    <li><a href="/statistics">Statistics</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Manage E-Waste Collection Efficiently</h2>
+                <p class="subtitle">Track and manage electronic waste collection records in your college or organization</p>
+                <div class="hero-buttons">
+                    <a href="/add_item" class="btn primary-btn">Add New Record</a>
+                    <a href="/view_data" class="btn secondary-btn">View All Records</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="container">
+                <h2>System Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Track Collection</h3>
+                        <p>Add and monitor e-waste collection records with real-time updates</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Manage Items</h3>
+                        <p>View, update, and delete collection records as needed</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Generate Reports</h3>
+                        <p>Get insights and statistics on collected e-waste</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🗂️</div>
+                        <h3>Data Export</h3>
+                        <p>Export all records to text files for reporting purposes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="stats-preview">
+            <div class="container">
+                <h2>Quick Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Items Collected</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Recycling Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Access</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 E-Waste Collection System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

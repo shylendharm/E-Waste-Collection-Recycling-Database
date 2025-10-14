@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View E-Waste Records - E-Waste Collection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>E-Waste Collection & Recycling System</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/add_item">Add Item</a></li>
+                <li><a href="/view_data">View Data</a></li>
+                <li><a href="/statistics">Statistics</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="content">
+        <h2>E-Waste Collection Records</h2>
+        <table id="ewaste-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Item Type</th>
+                    <th>Quantity</th>
+                    <th>Location</th>
+                    <th>Collection Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ record.record_id }}</td>
+                    <td>{{ record.user_name or 'N/A' }}</td>
+                    <td>{{ record.item_type }}</td>
+                    <td>{{ record.quantity }}</td>
+                    <td>{{ record.location }}</td>
+                    <td>{{ record.collection_date }}</td>
+                    <td>
+                        <span class="status {{ record.status.lower() }}">{{ record.status }}</span>
+                    </td>
+                    <td>
+                        <button class="edit-btn" data-id="{{ record.record_id }}">Edit</button>
+                        <button class="delete-btn" data-id="{{ record.record_id }}">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% if not records %}
+        <p class="no-records">No e-waste records found.</p>
+        {% endif %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 E-Waste Collection System. All rights reserved.</p>
+    </footer>
+    
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit E-Waste Record</h3>
+            <form id="edit-form">
+                <input type="hidden" id="edit-record-id" name="record_id">
+                
+                <div class="form-group">
+                    <label for="edit-item-type">Item Type:</label>
+                    <select id="edit-item-type" name="item_type" required>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Desktop Computer">Desktop Computer</option>
+                        <option value="Monitor">Monitor</option>
+                        <option value="Printer">Printer</option>
+                        <option value="Keyboard">Keyboard</option>
+                        <option value="Mouse">Mouse</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Phone">Phone</option>
+                        <option value="Battery">Battery</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-quantity">Quantity:</label>
+                    <input type="number" id="edit-quantity" name="quantity" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-location">Location:</label>
+                    <input type="text" id="edit-location" name="location" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-date">Collection Date:</label>
+                    <input type="date" id="edit-date" name="collection_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-status">Status:</label>
+                    <select id="edit-status" name="status">
+                        <option value="Pending">Pending</option>
+                        <option value="Collected">Collected</option>
+                    </select>
+                </div>
+                
+                <button type="submit">Update Record</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

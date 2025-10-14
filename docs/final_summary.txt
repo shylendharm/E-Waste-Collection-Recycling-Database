@@ -1,0 +1,48 @@
+# E-Waste Collection System - Final Project
+
+## Project Overview
+A complete web application for managing e-waste collection records in educational institutions.
+
+## Features
+- Add new e-waste collection records
+- View all records in a tabular format
+- Update collection status (Pending/Collected)
+- Delete records when necessary
+- Generate reports on e-waste collection
+- Responsive web interface
+
+## Technical Implementation
+- Backend: Python Flask framework
+- Database: SQLite3
+- Frontend: HTML, CSS, JavaScript
+- API endpoints for data operations
+
+## Database Schema
+- users table: id, name, email, password
+- ewaste_records table: record_id, user_id, item_type, quantity, location, collection_date, status
+
+## Files Created
+- backend/app.py: Main application
+- backend/database.py: Database setup
+- backend/models.py: CRUD operations
+- backend/routes.py: API endpoints
+- backend/report.py: Statistics generation
+- backend/templates/: HTML templates
+- backend/static/css/: Styling
+- database/e_waste.db: Database file
+- requirements.txt: Dependencies
+- README.md: Documentation
+
+## Testing Status
+All functionality tested and working:
+- Add items: ✅
+- View items: ✅
+- Update items: ✅
+- Delete items: ✅
+- Statistics: ✅
+- Form validation: ✅
+
+## Usage
+1. Install dependencies: pip install -r requirements.txt
+2. Run application: python backend/app.py
+3. Access at: http://localhost:5000

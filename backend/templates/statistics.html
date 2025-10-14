@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics - E-Waste Collection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>E-Waste Collection & Recycling System</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/add_item">Add Item</a></li>
+                <li><a href="/view_data">View Data</a></li>
+                <li><a href="/statistics">Statistics</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="content">
+        <h2>E-Waste Collection Statistics</h2>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Records</h3>
+                <p class="stat-value">{{ report.total_records }}</p>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Items Collected</h3>
+                <p class="stat-value">{{ report.status_breakdown.get('Collected', 0) }}</p>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Pending Items</h3>
+                <p class="stat-value">{{ report.status_breakdown.get('Pending', 0) }}</p>
+            </div>
+        </div>
+        
+        <div class="breakdown-section">
+            <h3>Status Breakdown</h3>
+            <ul>
+                {% for status, count in report.status_breakdown.items() %}
+                <li>{{ status }}: {{ count }} items</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="breakdown-section">
+            <h3>Item Type Breakdown</h3>
+            <ul>
+                {% for item_type, count in report.item_type_breakdown.items() %}
+                <li>{{ item_type }}: {{ count }} items</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="summary-section">
+            <h3>Summary</h3>
+            <p>{{ report.summary }}</p>
+        </div>
+        
+        <div class="export-section">
+            <h3>Export Data</h3>
+            <p>Download a complete report of all e-waste records</p>
+            <a href="/export_data" class="export-btn">Export All Records</a>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 E-Waste Collection System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
