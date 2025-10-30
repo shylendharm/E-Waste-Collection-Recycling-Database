@@ -30,7 +30,9 @@ def get_user_by_id(user_id):
     user = cursor.fetchone()
     conn.close()
     
-    return dict(user) if user else None
+    if user:
+        return dict(user)
+    return None
 
 def get_all_users():
     """Get all users"""
@@ -41,7 +43,7 @@ def get_all_users():
     users = cursor.fetchall()
     conn.close()
     
-    return [dict(user) for user in users]
+    return [dict(user) for user in users if user]
 
 def update_user(user_id, name=None, email=None, password=None):
     """Update a user's information"""
@@ -111,7 +113,9 @@ def get_ewaste_record_by_id(record_id):
     record = cursor.fetchone()
     conn.close()
     
-    return dict(record) if record else None
+    if record:
+        return dict(record)
+    return None
 
 def get_all_ewaste_records():
     """Get all e-waste records with user information"""
@@ -127,7 +131,7 @@ def get_all_ewaste_records():
     records = cursor.fetchall()
     conn.close()
     
-    return [dict(record) for record in records]
+    return [dict(record) for record in records if record]
 
 def update_ewaste_record(record_id, user_id=None, item_type=None, quantity=None, 
                         location=None, collection_date=None, status=None):
@@ -189,7 +193,7 @@ def get_user_ewaste_records(user_id):
     records = cursor.fetchall()
     conn.close()
     
-    return [dict(record) for record in records]
+    return [dict(record) for record in records if record]
 
 def get_ewaste_statistics():
     """Get statistics about e-waste records"""

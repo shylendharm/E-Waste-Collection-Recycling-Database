@@ -1,3 +1,5 @@
+import os
+import sys
 from flask import request, jsonify, render_template, redirect, url_for
 from backend.models import (
     create_user, get_user_by_id, get_all_users, update_user, delete_user,
@@ -102,10 +104,7 @@ def register_routes(app):
     @app.route('/statistics')
     def statistics():
         """Get e-waste statistics"""
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-        from report import generate_report
+        from backend.report import generate_report
         report = generate_report()
         return render_template('statistics.html', report=report)
     
@@ -114,6 +113,7 @@ def register_routes(app):
         """Export all e-waste records to a text file"""
         from flask import Response
         from backend.models import get_all_ewaste_records
+        from backend.report import generate_report
         import json
         
         records = get_all_ewaste_records()
@@ -136,10 +136,7 @@ def register_routes(app):
             output += "-----------------\n"
         
         # Add statistics
-        import sys
-        import os
-        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-        from report import generate_report
+        from backend.report import generate_report
         stats = generate_report()
         
         output += "\nStatistics Summary:\n"

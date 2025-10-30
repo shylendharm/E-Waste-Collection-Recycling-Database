@@ -3,7 +3,10 @@ import os
 
 def get_db_connection():
     """Create and return a database connection"""
-    conn = sqlite3.connect('database/e_waste.db')
+    # Ensure the database directory exists relative to the project root
+    db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'database', 'e_waste.db'))
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row  # This allows us to access columns by name
     return conn
 
@@ -40,8 +43,5 @@ def create_tables():
     print("Database connected successfully")
 
 if __name__ == "__main__":
-    # Ensure the database directory exists
-    os.makedirs('database', exist_ok=True)
-    
     # Create tables
     create_tables()

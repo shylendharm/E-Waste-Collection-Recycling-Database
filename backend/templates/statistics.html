@@ -26,41 +26,49 @@
         <div class="stats-container">
             <div class="stat-card">
                 <h3>Total Records</h3>
-                <p class="stat-value">{{ report.total_records }}</p>
+                <p class="stat-value">{{ report.total_records or 0 }}</p>
             </div>
             
             <div class="stat-card">
                 <h3>Items Collected</h3>
-                <p class="stat-value">{{ report.status_breakdown.get('Collected', 0) }}</p>
+                <p class="stat-value">{{ report.collected_count or 0 }}</p>
             </div>
             
             <div class="stat-card">
                 <h3>Pending Items</h3>
-                <p class="stat-value">{{ report.status_breakdown.get('Pending', 0) }}</p>
+                <p class="stat-value">{{ report.pending_count or 0 }}</p>
             </div>
         </div>
         
         <div class="breakdown-section">
             <h3>Status Breakdown</h3>
             <ul>
-                {% for status, count in report.status_breakdown.items() %}
-                <li>{{ status }}: {{ count }} items</li>
-                {% endfor %}
+                {% if report.status_breakdown %}
+                    {% for status, count in report.status_breakdown.items() %}
+                    <li>{{ status }}: {{ count }} items</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No status data available</li>
+                {% endif %}
             </ul>
         </div>
         
         <div class="breakdown-section">
             <h3>Item Type Breakdown</h3>
             <ul>
-                {% for item_type, count in report.item_type_breakdown.items() %}
-                <li>{{ item_type }}: {{ count }} items</li>
-                {% endfor %}
+                {% if report.item_type_breakdown %}
+                    {% for item_type, count in report.item_type_breakdown.items() %}
+                    <li>{{ item_type }}: {{ count }} items</li>
+                    {% endfor %}
+                {% else %}
+                    <li>No item type data available</li>
+                {% endif %}
             </ul>
         </div>
         
         <div class="summary-section">
             <h3>Summary</h3>
-            <p>{{ report.summary }}</p>
+            <p>{{ report.summary or 'No summary available' }}</p>
         </div>
         
         <div class="export-section">

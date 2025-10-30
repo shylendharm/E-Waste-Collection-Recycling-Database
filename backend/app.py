@@ -23,9 +23,6 @@ def create_app():
 app = create_app()
 
 if __name__ == '__main__':
-    # Make sure the database directory exists
-    os.makedirs('../database', exist_ok=True)
-    
     # Create tables
     create_tables()
     
